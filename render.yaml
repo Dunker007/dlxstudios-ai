@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: dlxstudios-backend
+    name: dlxstudios
     runtime: node
-    plan: standard
-    buildCommand: npm install && npm run build -w apps/backend
+    plan: starter
+    buildCommand: npm install && npm run build
     startCommand: npm start -w apps/backend
     envVars:
       - key: PORT
@@ -12,15 +12,3 @@ services:
         value: production
       - key: LM_STUDIO_URL
         sync: false
-
-  - type: web
-    name: dlxstudios-frontend
-    runtime: node
-    plan: standard
-    buildCommand: npm install && npm run build -w apps/frontend
-    startCommand: npm start -w apps/frontend
-    envVars:
-      - key: NODE_ENV
-        value: production
-      - key: NEXT_PUBLIC_BACKEND_URL
-        value: https://dlxstudios-backend.onrender.com
