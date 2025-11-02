@@ -12,6 +12,11 @@ const DEMO_MODE = process.env.LM_STUDIO_URL === "undefined" || process.env.NODE_
 app.use(cors());
 app.use(express.json());
 
+// Root endpoint
+app.get("/", (req, res) => {
+  res.json({ message: "DLXStudios Backend API", status: "ok", version: "1.0.0" });
+});
+
 // Health check
 app.get("/health", (req, res) => {
   res.json({ 
