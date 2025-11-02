@@ -1,4 +1,4 @@
-﻿import express from "express";
+import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 
@@ -46,7 +46,7 @@ app.post("/api/chat", async (req, res) => {
         ),
       ]);
 
-      const data = await response.json();
+      const data = await (response as Response).json();
       res.json(data);
     } catch (lmError) {
       console.warn("LM Studio unavailable, using demo response");
@@ -99,7 +99,7 @@ app.post("/api/generate-website", async (req, res) => {
         ),
       ]);
 
-      const data = await response.json();
+      const data = await (response as Response).json();
       res.json(data);
     } catch (lmError) {
       console.warn("LM Studio unavailable for generation");
