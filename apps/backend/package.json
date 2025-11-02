@@ -4,7 +4,7 @@
   "description": "DLXStudios.ai Backend API Server",
   "main": "dist/index.js",
   "scripts": {
-    "build": "npm run build -w apps/frontend && tsc",
+    "build": "npm run build --prefix ../../apps/frontend && tsc",
     "dev": "node dist/index.js",
     "start": "node dist/index.js",
     "dev:watch": "tsc --watch"
