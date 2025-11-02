@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useRef, useEffect } from 'react';
 import styles from './page.module.css';
@@ -78,16 +78,15 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>🎨 DLXStudios.ai</h1>
+        <h1>DLXStudios.ai</h1>
         <p>AI Web Development Studio</p>
       </div>
 
       <div className={styles.workspace}>
-        {/* Chat Sidebar */}
         <div className={styles.chatPanel}>
           <div className={styles.messages}>
             {messages.map((msg, idx) => (
-              <div key={idx} className={\ \}>
+              <div key={idx} className={styles.message}>
                 <strong>{msg.role}:</strong> {msg.content}
               </div>
             ))}
@@ -98,37 +97,52 @@ export default function Home() {
           <div className={styles.inputArea}>
             <textarea
               value={input}
-              onChange={e => setInput(e.target.value)}
+              onChange={(e) => setInput(e.target.value)}
               placeholder="Describe the website you want to create..."
-              disabled={loading}
+              className={styles.textarea}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                  e.preventDefault();
+                  handleSendMessage();
+                }
+              }}
             />
-            <button onClick={handleGenerateWebsite} disabled={loading}>
-              Generate Website
-            </button>
-            <button onClick={handleSendMessage} disabled={loading}>
-              Chat
-            </button>
+            <div className={styles.buttonGroup}>
+              <button
+                onClick={handleSendMessage}
+                disabled={loading}
+                className={styles.button}
+              >
+                Send Message
+              </button>
+              <button
+                onClick={handleGenerateWebsite}
+                disabled={loading}
+                className={styles.button}
+              >
+                Generate Website
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Preview Panel */}
         <div className={styles.previewPanel}>
-          {generatedCode ? (
-            <>
-              <div className={styles.previewTabs}>
-                <button>Preview</button>
-                <button>Code</button>
-              </div>
-              <div className={styles.preview}>
-                <iframe srcDoc={generatedCode} />
-              </div>
-              <button className={styles.exportBtn}>📥 Export HTML</button>
-            </>
-          ) : (
-            <div className={styles.placeholder}>
-              <p>👈 Generate a website to see it here</p>
-            </div>
-          )}
+          <div className={styles.codeViewer}>
+            {generatedCode ? (
+              <pre><code>{generatedCode}</code></pre>
+            ) : (
+              <p>Generated code will appear here...</p>
+            )}
+          </div>
+          <div className={styles.preview}>
+            {generatedCode && (
+              <iframe
+                srcDoc={generatedCode}
+                title="Website Preview"
+                className={styles.iframe}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
