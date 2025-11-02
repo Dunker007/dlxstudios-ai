@@ -1,5 +1,6 @@
-﻿const nextConfig = {
+const nextConfig = {
   reactStrictMode: true,
+  output: 'export',
   rewrites: async () => {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:5000';
     

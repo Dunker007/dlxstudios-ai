@@ -1,6 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import path from "path";
 
 dotenv.config();
 
@@ -12,10 +13,9 @@ const DEMO_MODE = process.env.LM_STUDIO_URL === "undefined" || process.env.NODE_
 app.use(cors());
 app.use(express.json());
 
-// Root endpoint
-app.get("/", (req, res) => {
-  res.json({ message: "DLXStudios Backend API", status: "ok", version: "1.0.0" });
-});
+// Serve frontend static files
+const frontendPath = path.join(__dirname, "../../frontend/out");
+app.use(express.static(frontendPath));
 
 // Health check
 app.get("/health", (req, res) => {
@@ -141,8 +141,13 @@ app.post("/api/generate-website", async (req, res) => {
   }
 });
 
+// Serve frontend index.html for all other routes (SPA routing)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(frontendPath, "index.html"));
+});
+
 app.listen(PORT, () => {
-  console.log(`ðŸš€ DLXStudios Backend running on http://localhost:${PORT}`);
-  console.log(`ðŸ”Œ LM Studio configured: ${LM_STUDIO_URL}`);
-  console.log(`ðŸ”§ Mode: ${DEMO_MODE ? "DEMO" : "LIVE"}`);
+  console.log(`Backend running on http://localhost:${PORT}`);
+  console.log(`LM Studio configured: ${LM_STUDIO_URL}`);
+  console.log(`Mode: ${DEMO_MODE ? "DEMO" : "LIVE"}`);
 });
