@@ -17,7 +17,7 @@ const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         
         // Get form values
@@ -26,19 +26,18 @@ if (contactForm) {
         const message = document.getElementById('message').value;
         
         // Simulate form submission (replace with actual backend integration)
-        setTimeout(() => {
-            // Show success message
-            formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
-            formMessage.className = 'form-message success';
-            
-            // Reset form
-            contactForm.reset();
-            
-            // Hide message after 5 seconds
-            setTimeout(() => {
-                formMessage.style.display = 'none';
-            }, 5000);
-        }, 1000);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        // Show success message
+        formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+        formMessage.className = 'form-message success';
+        
+        // Reset form
+        contactForm.reset();
+        
+        // Hide message after 5 seconds
+        await new Promise(resolve => setTimeout(resolve, 5000));
+        formMessage.style.display = 'none';
     });
 }
 
@@ -83,7 +82,7 @@ window.addEventListener('scroll', () => {
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (pageYOffset >= sectionTop - 200) {
+        if (window.scrollY >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
