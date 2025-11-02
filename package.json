@@ -1,0 +1,26 @@
+{
+  "name": "dlxstudios-ai",
+  "version": "1.0.0",
+  "description": "DLX Studios AI - AI-Powered Creative Solutions Website",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8000",
+    "serve": "python -m http.server 8000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dunker007/dlxstudios-ai.git"
+  },
+  "keywords": [
+    "ai",
+    "creative",
+    "studio",
+    "web"
+  ],
+  "author": "DLX Studios",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Dunker007/dlxstudios-ai/issues"
+  },
+  "homepage": "https://github.com/Dunker007/dlxstudios-ai#readme"
+}
