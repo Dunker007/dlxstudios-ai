@@ -1,0 +1,20 @@
+{
+  "name": "dlxstudios-ai",
+  "version": "1.0.0",
+  "description": "DLXStudios.ai - AI Web Development Studio on LuxRig",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -ws",
+    "dev:backend": "npm run dev -w apps/backend",
+    "dev:frontend": "npm run dev -w apps/frontend",
+    "dev": "npm run dev:backend & npm run dev:frontend",
+    "test": "npm run test -ws"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3"
+  }
+}

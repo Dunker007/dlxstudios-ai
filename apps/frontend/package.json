@@ -1,0 +1,23 @@
+{
+  "name": "@dlxstudios/frontend",
+  "version": "1.0.0",
+  "description": "DLXStudios.ai Frontend - Next.js React App",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "next": "^14.0.4"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.3",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "@types/node": "^20.10.6"
+  },
+  "private": true
+}
